@@ -2,7 +2,7 @@
 <CONFIG>
   <Package Version="4">
     <PathDelim Value="\"/>
-    <Name Value="pl_virtualtreesextra"/>
+    <Name Value="pltis_virtualtreesextra"/>
     <Type Value="RunAndDesignTime"/>
     <Author Value="PilotLogic Software House"/>
     <CompilerOptions>
@@ -104,13 +104,16 @@ for CodeTyphon Studio"/>
         <UnitName Value="vte_treedata"/>
       </Item21>
     </Files>
-    <RequiredPkgs Count="2">
+    <RequiredPkgs Count="3">
       <Item1>
-        <PackageName Value="virtualtreeview_package"/>
+        <PackageName Value="IDEIntf"/>
       </Item1>
       <Item2>
-        <PackageName Value="LCL"/>
+        <PackageName Value="pltis_virtualtrees"/>
       </Item2>
+      <Item3>
+        <PackageName Value="LCL"/>
+      </Item3>
     </RequiredPkgs>
     <UsageOptions>
       <UnitPath Value="$(PkgOutDir)"/>
