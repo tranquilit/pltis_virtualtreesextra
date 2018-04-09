@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="4">
+    <PathDelim Value="\"/>
+    <Name Value="pl_virtualtreesextra"/>
+    <Type Value="RunAndDesignTime"/>
+    <Author Value="PilotLogic Software House"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <PathDelim Value="\"/>
+      <SearchPaths>
+        <IncludeFiles Value="source"/>
+        <OtherUnitFiles Value="source"/>
+        <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)\$(LCLWidgetType)"/>
+      </SearchPaths>
+    </CompilerOptions>
+    <Description Value="Virtual Treeview Extra Components
+for CodeTyphon Studio"/>
+    <Version Major="6" Release="1"/>
+    <Files Count="21">
+      <Item1>
+        <Filename Value="source\AllVTExtraRegister.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="AllVTExtraRegister"/>
+      </Item1>
+      <Item2>
+        <Filename Value="source\vte_buttontree.pas"/>
+        <UnitName Value="vte_buttontree"/>
+      </Item2>
+      <Item3>
+        <Filename Value="source\vte_collectionvirtualtreemediator.pas"/>
+        <UnitName Value="vte_collectionvirtualtreemediator"/>
+      </Item3>
+      <Item4>
+        <Filename Value="source\vte_comboeditlink.pas"/>
+        <UnitName Value="vte_comboeditlink"/>
+      </Item4>
+      <Item5>
+        <Filename Value="source\vte_configproviter.pas"/>
+        <UnitName Value="vte_configproviter"/>
+      </Item5>
+      <Item6>
+        <Filename Value="source\vte_controller.pas"/>
+        <UnitName Value="vte_controller"/>
+      </Item6>
+      <Item7>
+        <Filename Value="source\vte_dbcheckgroup.pas"/>
+        <UnitName Value="vte_dbcheckgroup"/>
+      </Item7>
+      <Item8>
+        <Filename Value="source\vte_dbgrid.pas"/>
+        <UnitName Value="vte_dbgrid"/>
+      </Item8>
+      <Item9>
+        <Filename Value="source\vte_dbtree.pas"/>
+        <UnitName Value="vte_dbtree"/>
+      </Item9>
+      <Item10>
+        <Filename Value="source\vte_dbtreeex.pas"/>
+        <UnitName Value="vte_dbtreeex"/>
+      </Item10>
+      <Item11>
+        <Filename Value="source\vte_ddbtreeview.pas"/>
+        <UnitName Value="vte_ddbtreeview"/>
+      </Item11>
+      <Item12>
+        <Filename Value="source\vte_ddbtreeviewutils.pas"/>
+        <UnitName Value="vte_ddbtreeviewutils"/>
+      </Item12>
+      <Item13>
+        <Filename Value="source\vte_edittree.pas"/>
+        <UnitName Value="vte_edittree"/>
+      </Item13>
+      <Item14>
+        <Filename Value="source\vte_edittree_editors.pas"/>
+        <UnitName Value="vte_edittree_editors"/>
+      </Item14>
+      <Item15>
+        <Filename Value="source\vte_initree.pas"/>
+        <UnitName Value="vte_initree"/>
+      </Item15>
+      <Item16>
+        <Filename Value="source\vte_json.pas"/>
+        <UnitName Value="vte_json"/>
+      </Item16>
+      <Item17>
+        <Filename Value="source\vte_nodeinterfaces.pas"/>
+        <UnitName Value="vte_nodeinterfaces"/>
+      </Item17>
+      <Item18>
+        <Filename Value="source\vte_objecttree.pas"/>
+        <UnitName Value="vte_objecttree"/>
+      </Item18>
+      <Item19>
+        <Filename Value="source\vte_propertytree.pas"/>
+        <UnitName Value="vte_propertytree"/>
+      </Item19>
+      <Item20>
+        <Filename Value="source\vte_stringlist.pas"/>
+        <UnitName Value="vte_stringlist"/>
+      </Item20>
+      <Item21>
+        <Filename Value="source\vte_treedata.pas"/>
+        <UnitName Value="vte_treedata"/>
+      </Item21>
+    </Files>
+    <RequiredPkgs Count="2">
+      <Item1>
+        <PackageName Value="virtualtreeview_package"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
+      </Item2>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>
