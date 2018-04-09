@@ -18,7 +18,7 @@ uses
   DB,
   vte_configtree,
   vte_json,
-  //vte_rttigrid,
+  vte_rttigrid,
   vte_stringlist,
   vte_treedata,
   vte_propertytree,
@@ -153,7 +153,7 @@ begin
   RegisterComponents('Virtual Controls', [
                              TVirtualConfigTree,
                              TVirtualIniTree,
-                             //TVirtualRttiGrid ,
+                             TVirtualRttiGrid ,
                              TVirtualButtonTree,
                              TVirtualList,
                              TVirtualMemo,

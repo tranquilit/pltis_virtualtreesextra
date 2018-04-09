@@ -109,15 +109,15 @@ begin
         end;
       }
       //Retrieve ParamFlag(s)
-      for j:=pfVar to pfOut do
+      for j:=pfVar to pfVmt do
         if (j in TParamFlags(pword(@typd^.ParamList[n])^))  //=== ct9999 FPC SVN 35261============
           then
             case j of
               pfVar        : s:=s+'Var ';
               pfConst      : s:=s+'Const ';
               pfArray      : s:=s+'Array ';
-              pfAddress    : s:=s+'Address ';
-              pfReference  : s:=s+'Reference ';
+            //pfAddress    : s:=s+'Address ';
+            //pfReference  : s:=s+'Reference ';
               pfOut        : s:=s+'Out ';
             end;
       Inc(n);

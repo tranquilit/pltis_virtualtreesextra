@@ -5,34 +5,7 @@
 
 unit vte_configtree;
 
-//Lazarus port options
-{$define EnableOLE}
-{.$define EnableNativeTVM}
-{.$define EnablePrint}
-{.$define EnableNCFunctions}
-{$define EnableAdvancedGraphics}
-{$define EnableAlphaBlend}
-{.$define EnableAccessible}
-{$define ThemeSupport}
-{$if defined(LCLWin32) or defined(LCLWinCE)}
-  {$define LCLWin}
-{$endif}
-{.$define DEBUG_VTV}
-{$define USE_DELPHICOMPAT}
-//since
-{$if not defined(USE_DELPHICOMPAT) and not defined(LCLWin)}
-  {$define INCOMPLETE_WINAPI}
-{$endif}
-
-//under linux the performance is poor with threading enabled
-{$ifdef Windows}
-  {$define EnableThreadSupport}
-{$endif}
-{$if defined(CPU64) or defined(LCLCarbon)}
-  {$define PACKARRAYPASCAL}
-{$endif}
-
-{$define CompilerVersion := 19}
+{$mode objfpc}{$H+}
 
 interface
 
@@ -98,7 +71,8 @@ type
     procedure DoFreeNode(Node: PVirtualNode); override;
     procedure DoGetText(Node: PVirtualNode; Column: TColumnIndex;
       TextType: TVSTTextType; var CellText: String); override;
-    function DoInitChildren(Node: PVirtualNode; var AChildCount: Cardinal): Boolean; virtual;
+    procedure DoInitChildren(Node: PVirtualNode;
+      var NodeChildCount: Cardinal); override;
     procedure DoInitNode(ParentNode, Node: PVirtualNode;
       var InitStates: TVirtualNodeInitStates); override;
     procedure DoNewText(Node: PVirtualNode; Column: TColumnIndex;
@@ -444,14 +418,14 @@ begin
   end;
 end;
 
-Function TVirtualConfigTree.DoInitChildren(Node: PVirtualNode;
-  var AChildCount: Cardinal):Boolean;
+procedure TVirtualConfigTree.DoInitChildren(Node: PVirtualNode;
+  var NodeChildCount: Cardinal);
 var
   Data: PConfigData;
 begin
   Data := GetConfigData(Node);
   FConfig.ReadSection(Data^.Key, FItems, True);
-  AChildCount := FItems.Count;
+  NodeChildCount := FItems.Count;
 end;
 
 procedure TVirtualConfigTree.DoInitNode(ParentNode, Node: PVirtualNode;
