@@ -104,6 +104,8 @@ type
     procedure DoInitChildren(Node: PVirtualNode; var NodeChildCount: Cardinal); override;
     procedure DoInitNode(ParentNode, Node: PVirtualNode; var InitStates: TVirtualNodeInitStates); override;
     function GetOptionsClass: TTreeOptionsClass; override;
+    procedure DoAutoAdjustLayout(const AMode: TLayoutAdjustmentPolicy;
+      const AXProportion, AYProportion: Double); override;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -1313,6 +1315,28 @@ end;
 function TVirtualJSONInspector.GetOptionsClass: TTreeOptionsClass;
 begin
   Result := TJSONInspectorTreeOptions;
+end;
+
+procedure TVirtualJSONInspector.DoAutoAdjustLayout(
+  const AMode: TLayoutAdjustmentPolicy; const AXProportion, AYProportion: Double
+  );
+var
+  i: Integer;
+begin
+  if AMode in [lapAutoAdjustForDPI] then
+  begin
+    Header.MaxHeight:=round(Header.MaxHeight * AXProportion)-Header.MaxHeight+1;
+    Header.DefaultHeight:=round(Header.DefaultHeight * AXProportion)-Header.DefaultHeight+1;
+    Header.Height:=round(Header.Height * AXProportion)-Header.Height+1;
+    Header.MinHeight:=round(Header.MinHeight * AXProportion)-Header.MinHeight+1;
+
+    for i := 0 to header.Columns.Count-1 do
+    begin
+      header.Columns[i].MaxWidth:=round(header.Columns[i].MaxWidth * AXProportion);
+      header.Columns[i].Width:=round(header.Columns[i].Width * AXProportion);
+      header.Columns[i].MinWidth:=round(header.Columns[i].MinWidth * AXProportion);
+    end;
+  end;
 end;
 
 constructor TVirtualJSONInspector.Create(AOwner: TComponent);
