@@ -101,7 +101,7 @@ type
     procedure DoFreeNode(Node: PVirtualNode); override;
     procedure DoGetText(Node: PVirtualNode; Column: TColumnIndex;
       TextType: TVSTTextType; var CellText: String); override;
-    procedure DoInitChildren(Node: PVirtualNode; var NodeChildCount: Cardinal); override;
+    function DoInitChildren(Node: PVirtualNode; var NodeChildCount: Cardinal): Boolean; override;
     procedure DoInitNode(ParentNode, Node: PVirtualNode; var InitStates: TVirtualNodeInitStates); override;
     function GetOptionsClass: TTreeOptionsClass; override;
     procedure DoAutoAdjustLayout(const AMode: TLayoutAdjustmentPolicy;
@@ -535,7 +535,7 @@ type
     procedure DoChecked(Node: PVirtualNode); override;
     procedure DoGetText(Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType;
       var CellText: String); override;
-    procedure DoInitChildren(Node: PVirtualNode; var NodeChildCount: Cardinal); override;
+    function DoInitChildren(Node: PVirtualNode; var NodeChildCount: Cardinal): Boolean; override;
     procedure DoInitNode(ParentNode, Node: PVirtualNode;
       var InitStates: TVirtualNodeInitStates); override;
     function GetOptionsClass: TTreeOptionsClass; override;
@@ -841,13 +841,14 @@ begin
     FOnGetText(Self, Node, JSONData, Column, TextType, CellText);
 end;
 
-procedure TVirtualJSONTreeView.DoInitChildren(Node: PVirtualNode;
-  var NodeChildCount: Cardinal);
+function TVirtualJSONTreeView.DoInitChildren(Node: PVirtualNode;
+  var NodeChildCount: Cardinal): Boolean;
 var
   ItemData: PTVItemData;
 begin
   ItemData := GetItemData(Node);
   NodeChildCount := ItemData^.ChildrenData.Count;
+  result := True;
 end;
 
 procedure TVirtualJSONTreeView.DoInitNode(ParentNode, Node: PVirtualNode;
@@ -1248,13 +1249,14 @@ begin
   inherited DoFreeNode(Node);
 end;
 
-procedure TVirtualJSONInspector.DoInitChildren(Node: PVirtualNode;
-  var NodeChildCount: Cardinal);
+function TVirtualJSONInspector.DoInitChildren(Node: PVirtualNode;
+  var NodeChildCount: Cardinal): Boolean;
 var
   Data: PItemData;
 begin
   Data := GetItemData(Node);
   NodeChildCount := Length(Data^.Children);
+  result := inherited DoInitChildren(Node, NodeChildCount);
 end;
 
 procedure TVirtualJSONInspector.DoGetText(Node: PVirtualNode;

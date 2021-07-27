@@ -71,8 +71,8 @@ type
     procedure DoFreeNode(Node: PVirtualNode); override;
     procedure DoGetText(Node: PVirtualNode; Column: TColumnIndex;
       TextType: TVSTTextType; var CellText: String); override;
-    procedure DoInitChildren(Node: PVirtualNode;
-      var NodeChildCount: Cardinal); override;
+    function DoInitChildren(Node: PVirtualNode;
+      var NodeChildCount: Cardinal): Boolean; override;
     procedure DoInitNode(ParentNode, Node: PVirtualNode;
       var InitStates: TVirtualNodeInitStates); override;
     procedure DoNewText(Node: PVirtualNode; Column: TColumnIndex;
@@ -418,14 +418,15 @@ begin
   end;
 end;
 
-procedure TVirtualConfigTree.DoInitChildren(Node: PVirtualNode;
-  var NodeChildCount: Cardinal);
+function TVirtualConfigTree.DoInitChildren(Node: PVirtualNode;
+  var NodeChildCount: Cardinal): Boolean;
 var
   Data: PConfigData;
 begin
   Data := GetConfigData(Node);
   FConfig.ReadSection(Data^.Key, FItems, True);
   NodeChildCount := FItems.Count;
+  result := True;
 end;
 
 procedure TVirtualConfigTree.DoInitNode(ParentNode, Node: PVirtualNode;

@@ -855,7 +855,7 @@ Begin
       BeginUpdate;
       FDataLink.DataSet.DisableControls;
       FDBStatus := FDBStatus + [dbtsDataChanging, dbtsDragDrop];
-      ProcessDrop(DataObject, DropTargetNode, integer(Effect), amAddChildLast);
+      ProcessDrop(DataObject, DropTargetNode, Effect, amAddChildLast);
       Effect := DROPEFFECT_LINK;
       FocusedNode := Nil;
       EndUpdate;
@@ -2290,4 +2290,4 @@ End;
 
 End.
 
-
+

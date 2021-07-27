@@ -173,7 +173,7 @@ type
     function  DoGetImageIndex(Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
                        var Ghosted: Boolean; var Index: Integer): TCustomImageList; override;
     procedure DoGetText(Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType; var Text: String); override;
-    procedure DoInitChildren(Node: PVirtualNode; var ChildCount: Cardinal); override;
+    function DoInitChildren(Node: PVirtualNode; var ChildCount: Cardinal): Boolean; override;
     procedure DoStartDrag(var DragObject: TDragObject); override;
     function  GetColumnClass: TVirtualTreeColumnClass; override;
     function  GetListNode(Node: PVirtualNode): TDTNodeItem;
@@ -609,12 +609,13 @@ begin
   end;
 end;
 
-procedure TVirtualDDBTreeView.DoInitChildren(Node: PVirtualNode;
-  var ChildCount: Cardinal);
+function TVirtualDDBTreeView.DoInitChildren(Node: PVirtualNode;
+  var ChildCount: Cardinal): Boolean;
 var
   CurData: PNodeItem;
   CCount: integer;
 begin
+  result := False;
   if Node = nil then
     Exit;
   if not (vsInitialized in Node.States) then
@@ -652,6 +653,7 @@ begin
         end;
       end;
     ChildCount := CCount;
+    result := True;
     EndUpdate;
   end;
 end;

@@ -122,7 +122,7 @@ type
   protected
     procedure DoGetText(Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType; var Text: String); override;
     procedure DoInitNode(Parent, Node: PVirtualNode; var InitStates: TVirtualNodeInitStates); override;
-    procedure DoInitChildren(Node: PVirtualNode; var ChildCount: Cardinal); override;
+    function DoInitChildren(Node: PVirtualNode; var NodeChildCount: Cardinal): Boolean; override;
     procedure DoPaintText(Node: PVirtualNode; const Canvas: TCanvas; Column: TColumnIndex; TextType: TVSTTextType); override;
     procedure DoAfterItemPaint(Canvas: TCanvas; Node: PVirtualNode; const ItemRect: TRect); override;
     function  DoPaintBackground(Canvas: TCanvas; const R: TRect): Boolean; override;
@@ -368,12 +368,11 @@ begin
      //inherited; //
 end;
 
-procedure TVirtualPropertyTree.DoInitChildren(Node: PVirtualNode;
-  var ChildCount: Cardinal);
+function TVirtualPropertyTree.DoInitChildren(Node: PVirtualNode;
+  var NodeChildCount: Cardinal): Boolean;
 begin
-     ChildCount := Length( FCategories[Node^.Index].Fields );
-
-     inherited;
+     NodeChildCount := Length( FCategories[Node^.Index].Fields );
+     result := inherited DoInitChildren(Node, NodeChildCount);
 end;
 
 procedure TVirtualPropertyTree.DoInitNode(Parent, Node: PVirtualNode;
