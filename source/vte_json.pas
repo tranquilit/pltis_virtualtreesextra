@@ -1254,9 +1254,12 @@ function TVirtualJSONInspector.DoInitChildren(Node: PVirtualNode;
 var
   Data: PItemData;
 begin
-  Data := GetItemData(Node);
-  NodeChildCount := Length(Data^.Children);
-  result := inherited DoInitChildren(Node, NodeChildCount);
+  if not inherited DoInitChildren(Node, NodeChildCount) then
+  begin
+    Data := GetItemData(Node);
+    NodeChildCount := Length(Data^.Children);
+    Result := True;
+  end;
 end;
 
 procedure TVirtualJSONInspector.DoGetText(Node: PVirtualNode;
